@@ -6,10 +6,12 @@ import arrowDown from "../assets/mobile/Group 3.svg";
 import arrowUp from "../assets/mobile/Group 5.svg";
 import switchOnOff from "../assets/mobile/Combined Shape.svg";
 import classes from "./MainContainer.module.css";
-import backroundImg from "../assets/mobile/dayTime.svg";
+import day from "../assets/mobile/dayTime.svg";
+import night from "../assets/mobile/nightTime.svg";
 const MainContainer = () => {
   const [currentTime, setCurrentTime] = useState(DateTime.local());
   const [hide, setHide] = useState(false);
+  const [modeChange, setModeChange] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,9 +22,8 @@ const MainContainer = () => {
       clearInterval(interval);
     };
   }, []);
-  const formattedTime = currentTime.toFormat("HH:mm");
-  // console.log(formattedTime);
 
+  const formattedTime = currentTime.toFormat("HH:mm");
   const DayOfTheYear = currentTime.ordinal;
   const formattedDayOfWeek = currentTime.weekday;
   const weekNumber = currentTime.weekNumber;
@@ -32,10 +33,18 @@ const MainContainer = () => {
     (timezone) => timezone.name === timeZone
   );
   const countryCode = countryData ? countryData.countries[0] : "";
-
   const currentCity = currentTimeZone.split("/").slice(-1);
-  const containerStyles = {
-    backgroundImage: `url(${backroundImg})`,
+
+  const getGreeting = () => {
+    if (currentTime.hour >= 6 && currentTime.hour < 18) {
+      return "Good Morning";
+    } else {
+      return "Good Evening";
+    }
+  };
+
+  const dayContainerStyles = {
+    backgroundImage: `url( ${day})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -43,14 +52,28 @@ const MainContainer = () => {
     height: "667px",
     position: "relative",
   };
-
+  const nightContainerStyles = {
+    backgroundImage: `url( ${night})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "375px",
+    height: "667px",
+    position: "relative",
+  };
+  const modeChangeHandler = () => {
+    setModeChange((prevState) => !prevState);
+  };
   const openHandler = (e) => {
     setHide((prevState) => !prevState);
   };
 
   return (
     <Fragment>
-      <div style={containerStyles} className={classes.card}>
+      <div
+        style={modeChange ? nightContainerStyles : dayContainerStyles}
+        className={classes.card}
+      >
         <div className={classes.container}>
           <div className={hide ? classes.hidden : classes.header}>
             <div className={classes["title-container"]}>
@@ -61,7 +84,12 @@ const MainContainer = () => {
               </p>
               <span>Ada Lovelace</span>
             </div>
-            <img className={classes.img} src={switchOnOff} alt="" />
+            <img
+              className={classes.img}
+              src={switchOnOff}
+              alt=""
+              onClick={modeChangeHandler}
+            />
           </div>
           <div
             className={
@@ -72,7 +100,7 @@ const MainContainer = () => {
           >
             <div className={classes.dayNight}>
               <img src={sun} alt="sun" />
-              <p>GOOD MORNING</p>
+              <p>{getGreeting()}</p>
             </div>
             <div>
               <div className={classes.time}>{formattedTime}</div>
@@ -97,7 +125,13 @@ const MainContainer = () => {
             </button>
           </div>
           {hide ? (
-            <div className={classes["time-zone-info"]}>
+            <div
+              className={
+                modeChange
+                  ? classes["time-zone-info-dark"]
+                  : classes["time-zone-info-light"]
+              }
+            >
               <div>
                 <span>CURRENT TIMEZONE</span>
                 <h2>{currentTimeZone}</h2>
