@@ -8,6 +8,8 @@ import switchOnOff from "../assets/mobile/Combined Shape.svg";
 import classes from "./MainContainer.module.css";
 import day from "../assets/mobile/dayTime.svg";
 import night from "../assets/mobile/nightTime.svg";
+import CurrentTimeZone from "./TimeZoneInfo";
+
 const MainContainer = () => {
   const [currentTime, setCurrentTime] = useState(DateTime.local());
   const [hide, setHide] = useState(false);
@@ -29,6 +31,10 @@ const MainContainer = () => {
   const weekNumber = currentTime.weekNumber;
   const currentTimeZone = currentTime.zoneName;
   const timeZone = currentTime.zoneName;
+  const offsetName = currentTime.offsetNameLong
+    .split(" ")
+    .map((a) => a.slice(0, 1))
+    .join("");
   const countryData = Object.values(getAllTimezones()).find(
     (timezone) => timezone.name === timeZone
   );
@@ -102,9 +108,9 @@ const MainContainer = () => {
               <img src={sun} alt="sun" />
               <p>{getGreeting()}</p>
             </div>
-            <div>
-              <div className={classes.time}>{formattedTime}</div>
-              <span></span>
+            <div className={classes.time}>
+              <div>{formattedTime}</div>
+              <span>{offsetName}</span>
             </div>
             <span>
               IN {currentCity}, {countryCode}
@@ -125,30 +131,13 @@ const MainContainer = () => {
             </button>
           </div>
           {hide ? (
-            <div
-              className={
-                modeChange
-                  ? classes["time-zone-info-dark"]
-                  : classes["time-zone-info-light"]
-              }
-            >
-              <div>
-                <span>CURRENT TIMEZONE</span>
-                <h2>{currentTimeZone}</h2>
-              </div>
-              <div>
-                <span>Day of the yeara</span>
-                <h2>{DayOfTheYear}</h2>
-              </div>
-              <div>
-                <span>Day of the week</span>
-                <h2>{formattedDayOfWeek}</h2>
-              </div>
-              <div>
-                <span>Week number</span>
-                <h2>{weekNumber}</h2>
-              </div>
-            </div>
+            <CurrentTimeZone
+              modeChange={modeChange}
+              currentTimeZone={currentTimeZone}
+              DayOfTheYear={DayOfTheYear}
+              formattedDayOfWeek={formattedDayOfWeek}
+              weekNumber={weekNumber}
+            />
           ) : (
             ""
           )}
