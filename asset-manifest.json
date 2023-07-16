@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Clock-App-React%20/static/css/main.1a1eaae2.css",
-    "main.js": "/Clock-App-React%20/static/js/main.c1690592.js",
+    "main.css": "/Clock-App-React%20/static/css/main.b0b7851a.css",
+    "main.js": "/Clock-App-React%20/static/js/main.ecd00d52.js",
     "static/media/Group 3.svg": "/Clock-App-React%20/static/media/Group 3.50d026591a95b3436afc378571b60597.svg",
     "static/media/dayTime.svg": "/Clock-App-React%20/static/media/dayTime.cd2465aa57491c7702f61b729d8040ad.svg",
     "static/media/nightTime.svg": "/Clock-App-React%20/static/media/nightTime.a1f86a3fc06b58f8de2b6008936e6ca7.svg",
@@ -9,11 +9,11 @@
     "static/media/Combined Shape.svg": "/Clock-App-React%20/static/media/Combined Shape.41b95b5bff6229990190152004d73e1a.svg",
     "index.html": "/Clock-App-React%20/index.html",
     "static/media/Group 5.svg": "/Clock-App-React%20/static/media/Group 5.744ac344b04e133bda6b2ffc0ac3746c.svg",
-    "main.1a1eaae2.css.map": "/Clock-App-React%20/static/css/main.1a1eaae2.css.map",
-    "main.c1690592.js.map": "/Clock-App-React%20/static/js/main.c1690592.js.map"
+    "main.b0b7851a.css.map": "/Clock-App-React%20/static/css/main.b0b7851a.css.map",
+    "main.ecd00d52.js.map": "/Clock-App-React%20/static/js/main.ecd00d52.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a1eaae2.css",
-    "static/js/main.c1690592.js"
+    "static/css/main.b0b7851a.css",
+    "static/js/main.ecd00d52.js"
   ]
 }
