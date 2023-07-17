@@ -4,11 +4,11 @@ import { getAllTimezones } from "countries-and-timezones";
 import sun from "../assets/mobile/Combined Shape 1.svg";
 import arrowDown from "../assets/mobile/Group 3.svg";
 import arrowUp from "../assets/mobile/Group 5.svg";
-import switchOnOff from "../assets/mobile/Combined Shape.svg";
 import classes from "./MainContainer.module.css";
 import day from "../assets/mobile/dayTime.svg";
 import night from "../assets/mobile/nightTime.svg";
 import CurrentTimeZone from "./TimeZoneInfo";
+import Header from "./Header";
 
 const MainContainer = () => {
   const [currentTime, setCurrentTime] = useState(DateTime.local());
@@ -57,6 +57,7 @@ const MainContainer = () => {
     width: "375px",
     height: "667px",
     position: "relative",
+    transition: "all 0.5s ease",
   };
   const nightContainerStyles = {
     backgroundImage: `url( ${night})`,
@@ -66,6 +67,7 @@ const MainContainer = () => {
     width: "375px",
     height: "667px",
     position: "relative",
+    transition: "all 0.5s ease",
   };
   const modeChangeHandler = () => {
     setModeChange((prevState) => !prevState);
@@ -81,22 +83,7 @@ const MainContainer = () => {
         className={classes.card}
       >
         <div className={classes.container}>
-          <div className={hide ? classes.hidden : classes.header}>
-            <div className={classes["title-container"]}>
-              <p>
-                “The science of operations, as derived from mathematics more
-                especially, is a science of itself, and has its own abstract
-                truth and value.”
-              </p>
-              <span>Ada Lovelace</span>
-            </div>
-            <img
-              className={classes.img}
-              src={switchOnOff}
-              alt=""
-              onClick={modeChangeHandler}
-            />
-          </div>
+          <Header modeChangeHandler={modeChangeHandler} hide={hide} />
           <div
             className={
               hide

@@ -7,42 +7,14 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 .container {
   display: flex;
   flex-direction: column;
 }
-.header {
-  display: flex;
-  width: 86.4%;
-  margin: 31.67px 25px 0 26px;
-  /* transition: all 0.5s ease; */
-}
-.title-container {
-  z-index: 1;
-  color: #fff;
-  font-family: Inter;
-  font-style: normal;
-  line-height: 22px;
-  font-size: 12px;
-}
-.title-container span {
-  font-weight: 700;
-}
-.title-container p {
-  font-weight: 400;
-  margin-bottom: 9px;
-}
-.img {
-  width: 16.667px;
-  height: 16.667px;
-  fill: #fff;
-  opacity: 0.5;
-  z-index: 1;
-  cursor: pointer;
-}
+
 .data-container {
   display: flex;
   flex-direction: column;
